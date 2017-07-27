@@ -19,17 +19,24 @@
 
 package org.geometerplus.zlibrary.core.filesystem;
 
-import java.io.*;
-import java.util.*;
-
 import org.geometerplus.zlibrary.core.drm.EncryptionMethod;
 import org.geometerplus.zlibrary.core.drm.FileEncryptionInfo;
 import org.geometerplus.zlibrary.core.drm.embedding.EmbeddingInputStream;
 import org.geometerplus.zlibrary.core.util.InputStreamHolder;
 
-public abstract class ZLFile implements InputStreamHolder {
-	private final static HashMap<String,ZLFile> ourCachedFiles = new HashMap<String,ZLFile>();
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
+/***
+ * 基础文件类
+ */
+public abstract class ZLFile implements InputStreamHolder {
+	//缓存
+	private final static HashMap<String,ZLFile> ourCachedFiles = new HashMap<String,ZLFile>();
+	//压缩类型
 	protected interface ArchiveType {
 		int	NONE = 0;
 		int	GZIP = 0x0001;
@@ -39,11 +46,15 @@ public abstract class ZLFile implements InputStreamHolder {
 		int	TAR = 0x0200;
 		int	ARCHIVE = 0xff00;
 	};
-
+	//扩展名
 	private String myExtension;
+	//文件名字
 	private String myShortName;
+	//压缩类型
 	protected int myArchiveType;
+	//是否缓存
 	private boolean myIsCached;
+	//初始化
 	protected void init() {
 		final String name = getLongName();
 		final int index = name.lastIndexOf('.');

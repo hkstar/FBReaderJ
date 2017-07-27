@@ -32,6 +32,9 @@ import org.geometerplus.zlibrary.ui.android.view.AndroidFontUtil;
 
 import org.geometerplus.android.fbreader.dict.DictionaryUtil;
 
+/***
+ * 抽象的activity
+ */
 public abstract class FBReaderMainActivity extends Activity {
 	public static final int REQUEST_PREFERENCES = 1;
 	public static final int REQUEST_CANCEL_MENU = 2;
@@ -57,6 +60,10 @@ public abstract class FBReaderMainActivity extends Activity {
 		}
 	}
 
+	/**
+	 * 获取安卓相关的设置信息
+	 * @return
+	 */
 	public ZLAndroidLibrary getZLibrary() {
 		return ((ZLAndroidApplication)getApplication()).library();
 	}

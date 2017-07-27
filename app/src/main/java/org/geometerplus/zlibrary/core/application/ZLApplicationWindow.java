@@ -21,6 +21,9 @@ package org.geometerplus.zlibrary.core.application;
 
 import org.geometerplus.zlibrary.core.view.ZLViewWidget;
 
+/***
+ * 窗口设置接口
+ */
 public interface ZLApplicationWindow {
 	void setWindowTitle(String title);
 	void showErrorMessage(String resourceKey);

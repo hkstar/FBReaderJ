@@ -39,10 +39,19 @@ public abstract class Config {
 	}
 
 	private final String myNullString = new String("__NULL__");
+	//缓存
 	private final Map<StringPair,String> myCache =
 		Collections.synchronizedMap(new HashMap<StringPair,String>());
+	//组的缓存
 	private final Set<String> myCachedGroups = new HashSet<String>();
 
+	/**
+	 * 获取stingpair 对硬的string值
+	 * 如果缓存中存在取出，不存在创建空字符串并加入缓存
+	 * @param id
+	 * @param defaultValue
+	 * @return
+	 */
 	public final String getValue(StringPair id, String defaultValue) {
 		String value = myCache.get(id);
 		if (value == null) {
@@ -63,6 +72,11 @@ public abstract class Config {
 		return value != myNullString ? value : defaultValue;
 	}
 
+	/***
+	 * 设置
+	 * @param id
+	 * @param value
+	 */
 	public final void setValue(StringPair id, String value) {
 		final String oldValue = myCache.get(id);
 		if (oldValue != null && oldValue.equals(value)) {
@@ -72,6 +86,10 @@ public abstract class Config {
 		setValueInternal(id.Group, id.Name, value);
 	}
 
+	/**
+	 * 取出当前组内的所有值，并加入缓存
+	 * @param group
+	 */
 	public final void requestAllValuesForGroup(String group) {
 		synchronized (myCachedGroups) {
 			if (myCachedGroups.contains(group)) {
@@ -90,11 +108,21 @@ public abstract class Config {
 		}
 	}
 
+	/**
+	 * 制空
+	 * @param id
+	 */
 	public final void unsetValue(StringPair id) {
 		myCache.put(id, myNullString);
 		unsetValueInternal(id.Group, id.Name);
 	}
 
+	/***
+	 * 添加信息到缓存
+	 * @param group
+	 * @param name
+	 * @param value
+	 */
 	protected final void setToCache(String group, String name, String value) {
 		myCache.put(new StringPair(group, name), value != null ? value : myNullString);
 	}

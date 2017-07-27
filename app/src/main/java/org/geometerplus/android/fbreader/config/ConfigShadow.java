@@ -19,22 +19,37 @@
 
 package org.geometerplus.android.fbreader.config;
 
-import java.util.*;
-
 import android.app.Service;
-import android.content.*;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 
+import org.geometerplus.android.fbreader.api.FBReaderIntents;
 import org.geometerplus.zlibrary.core.options.Config;
 
-import org.geometerplus.android.fbreader.api.FBReaderIntents;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
+/***
+ * 软件配置文件
+ */
 public final class ConfigShadow extends Config implements ServiceConnection {
 	private final Context myContext;
+	//配置文件service连接接口
 	private volatile ConfigInterface myInterface;
+	//延迟直行的action
 	private final List<Runnable> myDeferredActions = new LinkedList<Runnable>();
 
+	//接收配置文件改变的广播
 	private final BroadcastReceiver myReceiver = new BroadcastReceiver() {
 		public void onReceive(Context context, Intent intent) {
 			try {

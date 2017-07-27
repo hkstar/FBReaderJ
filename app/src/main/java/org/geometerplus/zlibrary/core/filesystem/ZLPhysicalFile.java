@@ -22,6 +22,9 @@ package org.geometerplus.zlibrary.core.filesystem;
 import java.util.*;
 import java.io.*;
 
+/***
+ * 物理文件
+ */
 public final class ZLPhysicalFile extends ZLFile {
 	private final File myFile;
 
@@ -105,6 +108,10 @@ public final class ZLPhysicalFile extends ZLFile {
 		return new FileInputStream(myFile);
 	}
 
+	/**
+	 * 目录内容
+	 * @return
+	 */
 	protected List<ZLFile> directoryEntries() {
 		File[] subFiles = myFile.listFiles();
 		if (subFiles == null || subFiles.length == 0) {

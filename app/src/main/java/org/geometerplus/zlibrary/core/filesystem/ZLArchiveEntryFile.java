@@ -19,10 +19,14 @@
 
 package org.geometerplus.zlibrary.core.filesystem;
 
-import java.util.*;
-
 import org.geometerplus.zlibrary.core.filesystem.tar.ZLTarEntryFile;
 
+import java.util.Collections;
+import java.util.List;
+
+/***
+ * 压缩文件
+ */
 public abstract class ZLArchiveEntryFile extends ZLFile {
 	public static String normalizeEntryName(String entryName) {
 		while (entryName.startsWith("./")) {
@@ -50,6 +54,12 @@ public abstract class ZLArchiveEntryFile extends ZLFile {
 		return entryName;
 	}
 
+	/**
+	 * 只支持zip 和 tar
+	 * @param archive
+	 * @param entryName
+	 * @return
+	 */
 	public static ZLArchiveEntryFile createArchiveEntryFile(ZLFile archive, String entryName) {
 		if (archive == null) {
 			return null;
@@ -65,6 +75,11 @@ public abstract class ZLArchiveEntryFile extends ZLFile {
 		}
 	}
 
+	/***
+	 * 压缩文件列表
+	 * @param archive
+	 * @return
+	 */
 	static List<ZLFile> archiveEntries(ZLFile archive) {
 		switch (archive.myArchiveType & ArchiveType.ARCHIVE) {
 			case ArchiveType.ZIP:

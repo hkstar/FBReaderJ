@@ -19,6 +19,10 @@
 
 package org.geometerplus.zlibrary.core.options;
 
+/**
+ * 字符串对
+ * 所属组和名
+ */
 final class StringPair {
 	final String Group;
 	final String Name;

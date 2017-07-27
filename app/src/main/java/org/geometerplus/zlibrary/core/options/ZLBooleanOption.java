@@ -19,6 +19,9 @@
 
 package org.geometerplus.zlibrary.core.options;
 
+/**
+ * 布尔操作，存到sp中
+ */
 public final class ZLBooleanOption extends ZLOption {
 	private final boolean myDefaultValue;
 

@@ -23,6 +23,10 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
+/***
+ * 配置文件服务
+ * 主要是数据库相关
+ */
 public class ConfigService extends Service {
 	private ConfigInterface.Stub myConfig;
 

@@ -21,6 +21,9 @@ package org.geometerplus.zlibrary.core.options;
 
 import org.geometerplus.zlibrary.core.util.ZLColor;
 
+/**
+ * 颜色，存数据库
+ */
 public final class ZLColorOption extends ZLOption {
 	private ZLColor myValue;
 	private String myStringValue;

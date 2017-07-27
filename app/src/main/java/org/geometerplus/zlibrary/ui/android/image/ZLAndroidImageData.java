@@ -25,11 +25,15 @@ import android.graphics.BitmapFactory;
 import org.geometerplus.zlibrary.core.image.ZLImageData;
 import org.geometerplus.zlibrary.core.view.ZLPaintContext;
 
+/***
+ * 图片信息
+ */
 public abstract class ZLAndroidImageData implements ZLImageData {
-	private Bitmap myBitmap;
-	private int myRealWidth;
-	private int myRealHeight;
-	private ZLPaintContext.Size myLastRequestedSize = null;
+	private Bitmap myBitmap;//图片
+	private int myRealWidth;//真是的宽
+	private int myRealHeight;//真实高
+	private ZLPaintContext.Size myLastRequestedSize = null;//绘制的宽高
+	//缩放类型，默认原始大小
 	private ZLPaintContext.ScalingType myLastRequestedScaling = ZLPaintContext.ScalingType.OriginalSize;
 
 	protected ZLAndroidImageData() {
