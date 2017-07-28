@@ -236,6 +236,7 @@ public final class FBReader extends FBReaderMainActivity implements ZLApplicatio
 			DataService.BIND_AUTO_CREATE
 		);
 
+		//取出配置文件
 		final Config config = Config.Instance();
 		config.runOnConnect(new Runnable() {
 			public void run() {
@@ -261,6 +262,7 @@ public final class FBReader extends FBReaderMainActivity implements ZLApplicatio
 		if (myFBReaderApp == null) {
 			myFBReaderApp = new FBReaderApp(Paths.systemInfo(this), new BookCollectionShadow());
 		}
+		//启动书籍读取服务
 		getCollection().bindToService(this, null);
 		myBook = null;
 
